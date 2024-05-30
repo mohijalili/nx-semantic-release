@@ -35,20 +35,8 @@ jobs:
       - name: List Git tags
         run: git tag -l
 
-      - name: Create or update last-release tag
-        run: git tag -f last-release
-
-      - name: Test authentication
-        env:
-          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      - name: Tag last-release
+        shell: bash
         run: |
-          curl -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
-               -H "Accept: application/vnd.github.v3+json" \
-               https://api.github.com/repos/${{ github.repository }}
-
-      - name: Push last-release tag
-        env:
-          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        run: |
-          git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git
+          git tag -f last-release
           git push origin last-release --force

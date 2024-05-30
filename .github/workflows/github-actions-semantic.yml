@@ -26,8 +26,10 @@ jobs:
         run: npx nx affected --base=last-release --target=version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: List remote repositories
+        run: git remote -v
       - name: Tag last-release
         shell: bash
         run: |
           git tag -f last-release
-          git push origin last-release --force
+          git push https://${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git last-release --force

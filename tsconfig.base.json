@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@mohi-co/awesome-lib": ["libs/awesome-lib/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

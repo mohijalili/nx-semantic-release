@@ -16,10 +16,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-      - name: Setup Git
+      - name: Set up Git
         run: |
-          git config user.name "Mohi Jalili"
-          git config user.email "mohijalili@icloud.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
       - run: npm ci
       - name: Version
         shell: bash

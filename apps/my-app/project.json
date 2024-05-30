@@ -80,7 +80,12 @@
     "version": {
       "executor": "@jscutlery/semver:version",
       "options": {
-        "preset": "angular"
+        "preset": "angular",
+        "baseBranch": "HEAD:main",
+        "tagPrefix": "my-app_",
+        "push": true,
+        "trackDeps": true,
+        "commitMessageFormat": "feat({projectName}): release version {version} [skip ci]"
       }
     }
   }

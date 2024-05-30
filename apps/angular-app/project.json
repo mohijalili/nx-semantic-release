@@ -76,6 +76,12 @@
       "options": {
         "jestConfig": "apps/angular-app/jest.config.ts"
       }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "angular"
+      }
     }
   }
 }

@@ -9,25 +9,46 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-      - name: Setup Git
+
+      - name: Set up Git
         run: |
-          git config user.name "GitHub Bot"
-          git config user.email "gituser@example.com"
-      - run: npm ci
-      - name: Version
-        shell: bash
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run version command
         run: npx nx affected --base=last-release --target=version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Tag last-release
-        shell: bash
+
+      - name: List Git tags
+        run: git tag -l
+
+      - name: Create or update last-release tag
+        run: git tag -f last-release
+
+      - name: Test authentication
+        env:
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
-          git tag -f last-release
+          curl -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
+               -H "Accept: application/vnd.github.v3+json" \
+               https://api.github.com/repos/${{ github.repository }}
+
+      - name: Push last-release tag
+        env:
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git
           git push origin last-release --force

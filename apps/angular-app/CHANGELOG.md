@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.3.0](https://github.com/mohijalili/nx-semantic-release/compare/angular-app_0.2.0...angular-app_0.3.0) (2024-06-13)
+
+
+### Features
+
+* updated index file ([4d31397](https://github.com/mohijalili/nx-semantic-release/commit/4d313973a75e30dd65603061192c4680e57704bb))
+
+
+
 # [0.2.0](https://github.com/mohijalili/nx-semantic-release/compare/angular-app_0.1.0...angular-app_0.2.0) (2024-06-13)
 
 

@@ -11,5 +11,5 @@ jobs:
   linux_job:
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'Hi ${{ vars.CYPRESS_RECORD_KEY }}'
-      - run: echo 'Hi ${{ vars.IS_CYPRESS_RECORDED }}'
+      - run: echo 'Hi ${{ vars.main.CYPRESS_RECORD_KEY }}'
+      - run: echo 'Hi ${{ vars.main.IS_CYPRESS_RECORDED }}'

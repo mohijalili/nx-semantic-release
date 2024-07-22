@@ -9,5 +9,5 @@ jobs:
   linux_job:
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'Hi ${{ env.main.CYPRESS_RECORD_KEY }}'
-      - run: echo 'Hi ${{ env.main.IS_CYPRESS_RECORDED }}'
+      - run: echo 'Hi ${{ env.CYPRESS_RECORD_KEY }}'
+      - run: echo 'Hi ${{ env.IS_CYPRESS_RECORDED }}'
